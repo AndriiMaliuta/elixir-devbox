@@ -3,6 +3,15 @@ defmodule Start do
   IO.puts("Hello from Elixir!")
 
   name = "Petro"
+  age = 42
+
+  person = %{
+    name: "Vasyl",
+    age: 45,
+    address: %{
+      street: "Sadova"
+    }
+  }
 
   def sum(a, b) do
     a + b
@@ -109,6 +118,29 @@ defmodule Protocollss do
       Map.keys(map)
         |> Enum.map(fn k -> map[k] end)
 	|> Enum.join(",")
+    end
+  end
+
+  defmodule Dog do
+    @behaviour TalkingAnimal
+    def say(str) do
+      "woff"
+    end
+  end
+
+end
+
+
+
+defmodule MyMacros do
+
+  defmodule Logger do
+    defmacro log(msg) do
+      if is_log_enabled() do
+        quote do
+          IO.puts("> From log: #{unquote(msg)}")
+        end
+      end
     end
   end
 
